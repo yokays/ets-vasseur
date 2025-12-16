@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>ETS Vasseur – Ramonage & Couverture à Antibes (06)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <title>ETS Vasseur – Ramonage & Couverture - Antibes (06)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts -->
+  <!-- Typographies -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --primary:#0b2c5f;
-      --primary-light:#1f4fa3;
-      --accent:#d32f2f;
-      --bg:#f7f8fb;
-      --text:#0f172a;
+      /* Palette inspirée de tes images (bleu / bleu clair / rouge / gris) */
+      --primary:#1f4e79;
+      --primary-light:#2f6fa6;
+      --accent:#c62828;
+      --bg:#f4f6f8;
+
+      --text:#1f2933;
       --muted:#6b7280;
       --border:#e5e7eb;
       --radius-lg:18px;
       --radius-md:12px;
       --radius-pill:999px;
-      --shadow:0 18px 45px rgba(11,44,95,.12);
+      --shadow-soft:0 18px 45px rgba(31, 78, 121, 0.18);
     }
 
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family:"Inter",system-ui,sans-serif;
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
       color:var(--text);
       background:#fff;
       line-height:1.6;
@@ -36,9 +38,9 @@
     img{max-width:100%;display:block}
     a{text-decoration:none;color:inherit}
 
-    .container{max-width:1120px;margin:auto;padding:0 20px}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
 
-    /* TOPBAR */
+    /* Topbar */
     .topbar{
       background:var(--primary);
       color:#fff;
@@ -46,340 +48,694 @@
       padding:8px 0;
     }
     .topbar-inner{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      flex-wrap:wrap;
-      gap:12px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;
     }
-    .dot{
-      width:6px;height:6px;border-radius:50%;
-      background:var(--accent);display:inline-block;
-      margin-right:6px;
-    }
+    .topbar-left,.topbar-right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .topbar-item{display:inline-flex;align-items:center;gap:6px;opacity:.92}
+    .topbar-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 
-    /* HEADER */
+    /* Header */
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:#fff;
       border-bottom:1px solid var(--border);
+      background:#fff;
+      position:sticky;top:0;z-index:50;
     }
     .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 0;
-      gap:20px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;gap:24px;
     }
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-family:"Poppins",sans-serif;
-      font-weight:700;
-      font-size:20px;
-      color:var(--primary);
+    .nav-logo{
+      display:flex;align-items:center;gap:10px;
+      font-family:"Poppins",system-ui,sans-serif;
+      font-weight:700;font-size:20px;
     }
-    .logo img{
-      width:42px;height:42px;
-      object-fit:contain;
+    .nav-logo-mark{
+      width:44px;height:44px;border-radius:12px;
+      overflow:hidden;
       border:1px solid var(--border);
-      border-radius:10px;
-      padding:4px;
+      background:#fff;
+      display:inline-flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 25px rgba(31,78,121,.12);
     }
-    .nav-links{
-      display:flex;
-      gap:18px;
-      font-size:14px;
-    }
-    .nav-links a{
-      position:relative;
-    }
+    .nav-logo-mark img{width:100%;height:100%;object-fit:cover}
+    .nav-links{display:flex;align-items:center;gap:18px;font-size:14px}
+    .nav-links a{position:relative;padding:4px 0}
     .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;bottom:-4px;
-      width:0;height:2px;
-      background:var(--accent);
-      transition:.2s;
+      content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;
+      background:var(--accent);border-radius:999px;transition:width .2s ease;
     }
     .nav-links a:hover::after{width:100%}
-    .nav-cta{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .phone{
-      font-weight:600;
-      color:var(--accent);
-    }
+    .nav-cta{display:flex;align-items:center;gap:10px;font-size:14px}
+    .nav-phone{font-weight:600;white-space:nowrap}
 
-    /* BUTTONS */
     .btn{
-      padding:10px 18px;
-      border-radius:var(--radius-pill);
-      font-size:14px;
-      font-weight:500;
-      border:1px solid transparent;
-      cursor:pointer;
-      transition:.2s;
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:9px 18px;border-radius:var(--radius-pill);
+      border:1px solid transparent;font-size:14px;font-weight:500;
+      cursor:pointer;background:transparent;
+      transition:background .2s ease,color .2s ease,border-color .2s ease,transform .1s ease, box-shadow .2s ease;
+      font-family:"Inter",system-ui,sans-serif;
     }
     .btn-primary{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 12px 30px rgba(211,47,47,.25);
+      background:var(--accent);border-color:var(--accent);
+      color:#fff;box-shadow:0 14px 30px rgba(198, 40, 40, 0.20);
     }
-    .btn-primary:hover{transform:translateY(-1px)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 18px 40px rgba(198, 40, 40, 0.28)}
     .btn-outline{
-      background:#fff;
-      border-color:var(--primary);
-      color:var(--primary);
+      border-color:var(--border);color:var(--text);background:#fff;
     }
-    .btn-outline:hover{
-      background:var(--primary);
-      color:#fff;
-    }
+    .btn-outline:hover{border-color:var(--primary);color:var(--primary)}
 
-    /* HERO */
+    /* Hero */
     .hero{
-      padding:60px 0;
-      background:radial-gradient(circle at top left,#fff7ea 0,#fff 60%);
+      padding:40px 0 60px;
+      background:radial-gradient(circle at top left, #eaf2fb 0, #ffffff 58%);
     }
     .hero-grid{
       display:grid;
-      grid-template-columns:1.3fr 1fr;
-      gap:40px;
-      align-items:center;
+      grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+      gap:40px;align-items:center;
     }
     .eyebrow{
-      font-size:12px;
-      font-weight:600;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--accent);
-      margin-bottom:12px;
+      font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--accent);margin-bottom:12px;
+      font-family:"Poppins",system-ui,sans-serif;
     }
-    h1,h2,h3{
-      font-family:"Poppins",sans-serif;
-      color:var(--primary);
+    .hero-title{
+      font-family:"Poppins",system-ui,sans-serif;
+      font-size:36px;line-height:1.15;margin:0 0 14px;
+      letter-spacing:-.02em;color:var(--primary);
     }
-    h1{font-size:36px;line-height:1.15}
-    p{color:var(--muted)}
+    .hero-subtitle{
+      font-size:15px;color:var(--muted);max-width:520px;margin-bottom:20px;
+    }
+    .hero-cta-row{
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px;
+    }
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 12px;border-radius:var(--radius-pill);
+      background:#f9fafb;font-size:12px;color:var(--muted);
+      border:1px solid var(--border);
+    }
+    .hero-badge strong{color:var(--primary)}
+    .hero-meta{
+      display:flex;gap:24px;flex-wrap:wrap;
+      font-size:13px;color:var(--muted);margin-top:8px;
+    }
+    .hero-meta-item strong{display:block;color:var(--primary);font-size:14px}
+
+    .hero-visual{position:relative}
     .hero-card{
-      background:#0b1120;
-      color:#e5e7eb;
       border-radius:var(--radius-lg);
-      overflow:hidden;
-      box-shadow:var(--shadow);
+      overflow:hidden;box-shadow:var(--shadow-soft);
+      background:linear-gradient(180deg, #0b1f35 0%, #071427 100%);
+      color:#e5e7eb;position:relative;
     }
-    .hero-card-main{padding:18px}
+    .hero-card-main{padding:18px 18px 12px}
+    .hero-card-label{
+      font-size:11px;text-transform:uppercase;letter-spacing:.18em;
+      color:#a7b3c2;margin-bottom:6px;font-family:"Poppins",system-ui,sans-serif;
+    }
+    .hero-card-title{
+      font-family:"Poppins",system-ui,sans-serif;font-size:16px;font-weight:600;margin-bottom:4px;
+    }
+    .hero-card-text{font-size:13px;color:#c7d3df;margin-bottom:12px}
+    .hero-card-row{
+      display:flex;align-items:center;justify-content:space-between;font-size:12px;
+    }
+    .hero-card-badge{
+      padding:4px 10px;border-radius:999px;
+      background:rgba(198,40,40,.16);color:#ffd1d1;font-weight:500;
+      border:1px solid rgba(198,40,40,.18);
+    }
+    .hero-card-tag{font-size:11px;color:#a7b3c2}
     .hero-card-img{
-      height:200px;
-      background:url('https://www.mesdepanneurs.fr/sites/mesdepanneurs.fr/files/field/image/ramonage-cheminee.jpg') center/cover;
+      height:210px;
+      background-image:url('https://lh3.googleusercontent.com/ty9RopOVLtOoOmoxHhPFKIrs8SYJP1FhRr_thFjepAOTCrEHTVk7N9MJSLny-dxUhxzXJtkFDB03J0kB=s265-w265-h265');
+      background-size:cover;background-position:center;
     }
+    .hero-floating{
+      position:absolute;right:-8px;bottom:-14px;
+      background:#fff;border-radius:14px;padding:10px 14px;
+      box-shadow:var(--shadow-soft);font-size:12px;min-width:170px;
+      border:1px solid var(--border);
+    }
+    .hero-floating strong{display:block;font-size:13px;color:var(--primary)}
+    .hero-floating small{color:var(--muted);font-size:11px}
 
-    /* SECTIONS */
+    /* Steps */
+    .steps{margin-top:30px}
+    .steps-headline{font-family:"Poppins",system-ui,sans-serif;font-size:18px;margin-bottom:14px;color:var(--primary)}
+    .steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .step-card{
+      border-radius:var(--radius-md);border:1px solid var(--border);
+      padding:14px 16px;background:#fff;
+    }
+    .step-number{
+      font-family:"Poppins",system-ui,sans-serif;font-size:20px;font-weight:600;
+      color:var(--accent);margin-bottom:3px;
+    }
+    .step-title{font-size:14px;font-weight:600;margin-bottom:4px}
+    .step-text{font-size:13px;color:var(--muted)}
+
+    /* Sections */
     section{padding:60px 0}
+    .section-eyebrow{
+      font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--accent);margin-bottom:10px;font-family:"Poppins",system-ui,sans-serif;
+    }
+    .section-title{
+      font-family:"Poppins",system-ui,sans-serif;font-size:26px;margin:0 0 10px;
+      letter-spacing:-.01em;color:var(--primary);
+    }
+    .section-intro{
+      font-size:15px;color:var(--muted);max-width:700px;margin-bottom:26px;
+    }
+
+    /* About */
+    .about-grid{
+      display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+      gap:40px;align-items:center;
+    }
+    .about-img{
+      border-radius:var(--radius-lg);
+      overflow:hidden;box-shadow:var(--shadow-soft);
+      min-height:280px;
+      background-image:url('https://lh3.googleusercontent.com/Iiv55XftFqn2lyagONlhUqnl8fM4cSMQUqGClo1afzDLp2EFTUgrvi2j2887g3x-mr1EGg4ml8kxZi4o=s265-w265-h265');
+      background-size:cover;background-position:center;
+    }
+    .about-meta{
+      margin-top:18px;display:flex;flex-wrap:wrap;gap:18px;font-size:13px;
+    }
+    .about-meta-item strong{display:block;color:var(--primary);font-size:14px}
+
+    /* Services */
     .section-alt{background:var(--bg)}
-    .section-intro{max-width:700px;margin-bottom:30px}
+    .services-top-row{
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;margin-bottom:22px;
+    }
+    .services-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .service-card{
+      background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);
+      padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px;
+      box-shadow:0 10px 25px rgba(31,78,121,.06);
+    }
+    .service-tag{
+      font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--accent);font-family:"Poppins",system-ui,sans-serif;
+    }
+    .service-title{
+      font-family:"Poppins",system-ui,sans-serif;font-size:16px;margin:0;color:var(--primary);
+    }
+    .service-text{font-size:14px;color:var(--muted);flex:1}
+    .service-link{margin-top:8px;font-size:13px;font-weight:500;color:var(--primary)}
 
-    /* SERVICES */
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:20px;
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .project-card{
+      border-radius:var(--radius-lg);border:1px solid var(--border);
+      overflow:hidden;background:#fff;display:flex;flex-direction:column;
+      box-shadow:0 10px 25px rgba(31,78,121,.06);
     }
-    .card{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:var(--radius-lg);
-      padding:18px;
+    .project-img{height:170px;background-size:cover;background-position:center}
+    .project-img-1{background-image:url('https://lh3.googleusercontent.com/9w4XJ5W5kEODiudnV0a5RQeva1O5cpyXUTmJCLtvFROZXmeT7xwoTunDkUMjmuXBaOo1L0QiyNohyN_L=s265-w265-h265')}
+    .project-img-2{background-image:url('https://lh3.googleusercontent.com/DSIV7CzbpvuXMBlnX1w0p6YTtMQx32CtqpPwOmZnBgPXJh4ZpwaGcEOKio8WfCpJm_p8xauGy2ZsMgKN=s265-w265-h265')}
+    .project-img-3{background-image:url('https://lh3.googleusercontent.com/ty9RopOVLtOoOmoxHhPFKIrs8SYJP1FhRr_thFjepAOTCrEHTVk7N9MJSLny-dxUhxzXJtkFDB03J0kB=s265-w265-h265')}
+    .project-body{padding:14px 16px;font-size:14px}
+    .project-body h3{
+      font-family:"Poppins",system-ui,sans-serif;font-size:16px;margin:0 0 6px;color:var(--primary);
     }
-
-    /* GALLERY */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-      gap:18px;
-    }
-    .gallery div{
-      height:180px;
-      border-radius:var(--radius-lg);
-      background-size:cover;
-      background-position:center;
-      border:1px solid var(--border);
-    }
+    .project-body p{margin:0 0 10px;color:var(--muted);font-size:13px}
+    .project-link{font-size:13px;font-weight:500;color:var(--primary)}
 
     /* CTA */
-    .cta{
-      background:linear-gradient(135deg,var(--accent),var(--primary));
-      color:#fff;
+    .cta-block{
       border-radius:var(--radius-lg);
-      padding:30px;
+      padding:22px 20px;
+      background:radial-gradient(circle at right, rgba(198,40,40,0.95) 0, rgba(31,78,121,1) 55%, #071427 100%);
+      color:#e5e7eb;
       display:grid;
-      grid-template-columns:1.5fr 1fr;
-      gap:20px;
+      grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+      gap:24px;align-items:center;
+      box-shadow:var(--shadow-soft);
+      border:1px solid rgba(255,255,255,.08);
     }
-    .cta p{color:#f3f4f6}
+    .cta-title{font-family:"Poppins",system-ui,sans-serif;font-size:20px;margin:0 0 6px}
+    .cta-text{font-size:14px;color:#e9edf2;margin-bottom:12px;opacity:.95}
+    .cta-phone{font-weight:600;font-size:16px}
+    .stats-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:10px;font-size:13px;
+    }
+    .stat{
+      border-radius:10px;padding:10px 12px;background:rgba(7, 20, 39, 0.55);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .stat strong{display:block;font-size:17px}
 
-    /* FOOTER */
+    /* FAQ */
+    .faq-grid{
+      display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+      gap:32px;align-items:flex-start;
+    }
+    details{
+      border-radius:12px;border:1px solid var(--border);
+      padding:10px 14px;background:#fff;font-size:14px;
+    }
+    details + details{margin-top:10px}
+    summary{
+      list-style:none;cursor:pointer;font-weight:500;color:var(--primary);outline:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details[open] summary{margin-bottom:6px}
+    details p{margin:0;font-size:13px;color:var(--muted)}
+
+    /* Footer */
     footer{
-      background:var(--primary);
-      color:#fff;
-      padding:40px 0 20px;
+      background:#071427;color:#9ca3af;padding:40px 0 20px;margin-top:40px;
     }
     .footer-grid{
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr;
-      gap:30px;
-      margin-bottom:20px;
+      display:grid;grid-template-columns:2fr 1.4fr 1.4fr;
+      gap:28px;margin-bottom:28px;font-size:14px;
     }
+    .footer-logo{
+      display:flex;align-items:center;gap:10px;
+      font-family:"Poppins",system-ui,sans-serif;font-weight:700;font-size:18px;
+      color:#e5e7eb;margin-bottom:8px;
+    }
+    .footer-title{
+      font-family:"Poppins",system-ui,sans-serif;font-size:14px;margin-bottom:8px;color:#e5e7eb;
+    }
+    .footer-links,.footer-contact{font-size:13px}
+    .footer-links a{display:block;margin-bottom:4px;color:#a7b3c2}
+    .footer-links a:hover{color:#fff}
     .footer-bottom{
-      text-align:center;
-      font-size:12px;
-      color:#e5e7eb;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:10px;font-size:12px;color:#a7b3c2;text-align:center;
     }
 
-    /* RESPONSIVE */
-    @media(max-width:900px){
-      .hero-grid,.grid-3,.cta,.footer-grid{grid-template-columns:1fr}
+    /* Responsive */
+    @media (max-width:960px){
+      .hero-grid,.about-grid,.services-grid,.projects-grid,.cta-block,
+      .faq-grid,.footer-grid,.steps-grid{
+        grid-template-columns:minmax(0,1fr);
+      }
       .nav-links{display:none}
-      h1{font-size:28px}
+      .cta-block{padding:18px 16px}
+      section{padding:40px 0}
+    }
+    @media (max-width:640px){
+      .hero-title{font-size:28px}
+      .section-title{font-size:22px}
+      .topbar-inner{justify-content:center}
+      .nav-logo{font-size:18px}
+      .nav-logo-mark{width:40px;height:40px}
     }
   </style>
 </head>
 
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="container topbar-inner">
-    <div><span class="dot"></span>Ramoneur & couvreur à Antibes (06)</div>
-    <div>07 51 30 26 29</div>
-  </div>
-</div>
-
-<!-- HEADER -->
-<header>
-  <div class="container nav">
-    <div class="logo">
-      <img src="https://lh3.googleusercontent.com/a-/ALV-UjVT7sgGS-kMOnfkcm0t6CIoIvSwEjNiIxbs3RrBPTGnEZyBjyM=s265" alt="Logo ETS Vasseur">
-      ETS Vasseur
-    </div>
-    <nav class="nav-links">
-      <a href="#accueil">Accueil</a>
-      <a href="#apropos">À propos</a>
-      <a href="#services">Services</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-cta">
-      <a href="tel:0751302629" class="phone">07 51 30 26 29</a>
-      <a href="#contact" class="btn btn-primary">Devis gratuit</a>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<main id="accueil">
-<section class="hero">
-  <div class="container hero-grid">
-    <div>
-      <div class="eyebrow">Antibes – Alpes-Maritimes</div>
-      <h1>Ramonage & travaux de toiture à Antibes</h1>
-      <p class="section-intro">
-        ETS Vasseur intervient pour le ramonage de cheminée, poêle, insert,
-        ainsi que pour la réparation et l’entretien de toiture.
-      </p>
-      <a href="#contact" class="btn btn-primary">Obtenir un devis</a>
-      <a href="tel:0751302629" class="btn btn-outline">Appeler</a>
-    </div>
-
-    <div class="hero-card">
-      <div class="hero-card-main">
-        <strong>Intervention récente</strong>
-        <p>Ramonage complet avec contrôle du conduit</p>
-      </div>
-      <div class="hero-card-img"></div>
-    </div>
-  </div>
-</section>
-
-<!-- A PROPOS -->
-<section id="apropos">
-  <div class="container">
-    <h2>Entreprise locale à Antibes</h2>
-    <p class="section-intro">
-      ETS Vasseur accompagne particuliers et professionnels avec une méthode simple :
-      diagnostic clair, devis détaillé, intervention propre.
-    </p>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services" class="section-alt">
-  <div class="container">
-    <h2>Nos services</h2>
-    <div class="grid-3">
-      <div class="card">Ramonage cheminée / poêle</div>
-      <div class="card">Débistrage & entretien conduits</div>
-      <div class="card">Couverture & zinguerie</div>
-    </div>
-  </div>
-</section>
-
-<!-- GALERIE -->
-<section id="galerie">
-  <div class="container">
-    <h2>Galerie photos</h2>
-    <div class="gallery">
-      <div style="background-image:url('https://lh3.googleusercontent.com/cc3FDovXh74i4rH_ZkAzpxcpQcvyUW0yelkToI8XqEvBGfZd_t5h3VpU_1TgAhx3M3PXD7UtzD5hSN2x=s800')"></div>
-      <div style="background-image:url('https://lh3.googleusercontent.com/HaDxvJFOKRwoiAHHdBw-3TlWyJeqUAkU9vJpv9M-F7tAN2qD_O0Q0a5NGPl1aOb05zdRYr6wMpkvhxhU=s800')"></div>
-      <div style="background-image:url('https://lh3.googleusercontent.com/i6ZZ9BUuemISW8T0QVHvFh0xbDgzQf05EMEDB-GLRRr0SVmHEE_0OCW9UgCUwqLuUsHcfYEPxIpxyn7c=s800')"></div>
-      <div style="background-image:url('https://lh3.googleusercontent.com/Wqgq_gt1e4lq8ibs-Iuhu3p2g7IqJQL30QUUblEc2BQF8eUNFVey1UA1KZkfbh03Pr1XhB4Lspttk61w=s800')"></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="cta">
-      <div>
-        <h2>Besoin d’un devis ?</h2>
-        <p>Contactez ETS Vasseur pour une intervention rapide à Antibes.</p>
-        <a href="tel:0751302629" class="btn btn-primary">07 51 30 26 29</a>
-      </div>
-      <div>
-        <p>📍 10 Av. Principal Pastour<br>06600 Antibes</p>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-left">
+          <div class="topbar-item">
+            <span class="topbar-dot"></span>
+            <span>Ramoneur & couvreur à Antibes et alentours (06)</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-item">07 51 30 26 29</div>
+          <div class="topbar-item">Antibes</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
-</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-grid">
-    <div>
-      <strong>ETS Vasseur</strong>
-      <p>Ramonage & couverture à Antibes (06)</p>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="nav-logo">
+          <div class="nav-logo-mark">
+            <img
+              src="https://lh3.googleusercontent.com/a-/ALV-UjVT7sgGS-kMOnfkcm0t6CIoIvSwEjNiIxbs3RrBPTGnEZyBjyM=s265-w265-h265"
+              alt="ETS Vasseur - Ramonage et Couverture"
+              loading="lazy"
+            />
+          </div>
+          <span>ETS Vasseur</span>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#accueil">Accueil</a>
+          <a href="#apropos">À propos</a>
+          <a href="#services">Services</a>
+          <a href="#projets">Réalisations</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="nav-phone" href="tel:0751302629">07 51 30 26 29</a>
+          <button class="btn btn-primary" onclick="window.location.href='#contact'">Demander un devis</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <a href="#services">Services</a><br>
-      <a href="#galerie">Galerie</a>
+  </header>
+
+  <!-- HERO -->
+  <main id="accueil">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Antibes (06) – Ramonage & couverture</div>
+            <h1 class="hero-title">Ramonage, entretien de conduits et travaux de toiture à Antibes</h1>
+            <p class="hero-subtitle">
+              ETS Vasseur intervient à Antibes et sur le secteur Alpes-Maritimes (06) pour le ramonage de cheminée,
+              poêle et insert, le débistrage si nécessaire, ainsi que la réparation et la rénovation de toiture
+              (étanchéité, zinguerie, gouttières). Devis clair, conseils utiles, finitions soignées.
+            </p>
+
+            <div class="hero-cta-row">
+              <button class="btn btn-primary" onclick="window.location.href='#contact'">Obtenir un devis gratuit</button>
+              <a class="btn btn-outline" href="tel:0751302629">Nous appeler</a>
+            </div>
+
+            <div class="hero-badge">
+              <span class="topbar-dot"></span>
+              <span><strong>Intervention rapide</strong> à Antibes et communes voisines</span>
+            </div>
+
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <strong>Ramonage sérieux</strong>
+                Passage complet du conduit, contrôle visuel et conseils d’usage.
+              </div>
+              <div class="hero-meta-item">
+                <strong>Toiture maîtrisée</strong>
+                Recherche de fuite, reprises d’étanchéité et zinguerie.
+              </div>
+            </div>
+
+            <div class="steps">
+              <div class="steps-headline">Votre intervention en 3 étapes</div>
+              <div class="steps-grid">
+                <div class="step-card">
+                  <div class="step-number">01.</div>
+                  <div class="step-title">Contact & besoin</div>
+                  <div class="step-text">Vous décrivez votre demande (ramonage, fuite, rénovation).</div>
+                </div>
+                <div class="step-card">
+                  <div class="step-number">02.</div>
+                  <div class="step-title">Visite & diagnostic</div>
+                  <div class="step-text">Déplacement à Antibes pour évaluer l’installation ou la toiture.</div>
+                </div>
+                <div class="step-card">
+                  <div class="step-number">03.</div>
+                  <div class="step-title">Intervention & contrôle</div>
+                  <div class="step-text">Travail propre, vérification finale, recommandations d’entretien.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card">
+              <div class="hero-card-main">
+                <div class="hero-card-label">Exemple d’intervention</div>
+                <div class="hero-card-title">Ramonage – Antibes</div>
+                <div class="hero-card-text">
+                  Ramonage du conduit, contrôle des points sensibles et conseils pour améliorer le tirage et la sécurité.
+                </div>
+                <div class="hero-card-row">
+                  <div class="hero-card-badge">Intervention réalisée</div>
+                  <div class="hero-card-tag">Propreté et efficacité</div>
+                </div>
+              </div>
+              <div class="hero-card-img"></div>
+            </div>
+
+            <div class="hero-floating">
+              <strong>Devis gratuit</strong>
+              <small>Contactez-nous pour un diagnostic.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section id="apropos">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <div class="section-eyebrow">À propos</div>
+            <h2 class="section-title">ETS Vasseur, votre ramoneur et couvreur à Antibes</h2>
+            <p class="section-intro">
+              Nous accompagnons particuliers et professionnels pour le ramonage et l’entretien des conduits,
+              ainsi que pour les travaux de toiture : réparation, rénovation, zinguerie et entretien.
+              Une méthode simple : diagnostic clair, devis détaillé, intervention propre.
+            </p>
+            <p>
+              Un conduit entretenu améliore la sécurité et le rendement, et une toiture en bon état protège durablement votre maison.
+              Nous privilégions des solutions fiables : contrôle des points sensibles, évacuation des eaux, reprises d’étanchéité,
+              finitions soignées.
+            </p>
+            <div class="about-meta">
+              <div class="about-meta-item">
+                <strong>Entreprise locale</strong>
+                Intervention à Antibes et dans le 06 selon les chantiers.
+              </div>
+              <div class="about-meta-item">
+                <strong>Travail soigné</strong>
+                Protection des lieux, finitions propres, contrôle final.
+              </div>
+            </div>
+          </div>
+          <div class="about-img"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-alt">
+      <div class="container">
+        <div class="services-top-row">
+          <div>
+            <div class="section-eyebrow">Services</div>
+            <h2 class="section-title">Nos services à Antibes (06)</h2>
+            <p class="section-intro">
+              Ramonage, débistrage, entretien des conduits et travaux de couverture : des solutions adaptées à votre logement.
+            </p>
+          </div>
+          <div>
+            <button class="btn btn-outline" onclick="window.location.href='#contact'">Demander un devis</button>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-tag">Ramonage</div>
+            <h3 class="service-title">Ramonage cheminée, insert, poêle</h3>
+            <p class="service-text">Ramonage complet du conduit, contrôle visuel et conseils d’entretien pour une utilisation plus sûre.</p>
+            <span class="service-link">Intervention propre</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Débistrage</div>
+            <h3 class="service-title">Débistrage & conduit encrassé</h3>
+            <p class="service-text">En cas de bistre important : intervention adaptée pour retrouver un conduit fonctionnel.</p>
+            <span class="service-link">Diagnostic recommandé</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Entretien</div>
+            <h3 class="service-title">Contrôle & entretien des conduits</h3>
+            <p class="service-text">Vérification des points sensibles, conseils de tirage, prévention et bonnes pratiques.</p>
+            <span class="service-link">Prévention utile</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Couverture</div>
+            <h3 class="service-title">Recherche de fuite & réparation toiture</h3>
+            <p class="service-text">Infiltration, tuiles déplacées, faîtage fragilisé : intervention rapide pour limiter les dégâts.</p>
+            <span class="service-link">Diagnostic + devis</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Zinguerie</div>
+            <h3 class="service-title">Gouttières & zinguerie</h3>
+            <p class="service-text">Pose/remplacement de gouttières, solins, abergements : étanchéité renforcée et eaux bien évacuées.</p>
+            <span class="service-link">Travail précis</span>
+          </article>
+
+          <article class="service-card">
+            <div class="service-tag">Urgence</div>
+            <h3 class="service-title">Bâchage & mise en sécurité</h3>
+            <p class="service-text">Après intempéries : mise hors d’eau provisoire, sécurisation, puis réparation durable.</p>
+            <span class="service-link">Appel conseillé</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RÉALISATIONS -->
+    <section id="projets">
+      <div class="container">
+        <div class="section-eyebrow">Réalisations</div>
+        <h2 class="section-title">Exemples d’interventions</h2>
+        <p class="section-intro">
+          Quelques exemples typiques : ramonage, entretien et interventions toiture. Nous adaptons la méthode à votre installation et à votre couverture.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-img project-img-1"></div>
+            <div class="project-body">
+              <h3>Ramonage et entretien</h3>
+              <p>Contrôle des points sensibles, conseils d’usage et intervention propre.</p>
+              <span class="project-link">Sécurité et efficacité</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img project-img-2"></div>
+            <div class="project-body">
+              <h3>Intervention toiture</h3>
+              <p>Reprise d’étanchéité, contrôle des évacuations et finitions soignées.</p>
+              <span class="project-link">Toiture sécurisée</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-img project-img-3"></div>
+            <div class="project-body">
+              <h3>Ramonage</h3>
+              <p>Passage complet du conduit, vérification et recommandations d’entretien.</p>
+              <span class="project-link">Travail propre</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section>
+      <div class="container">
+        <div class="cta-block" id="contact">
+          <div>
+            <h2 class="cta-title">Besoin d’un ramoneur ou d’un couvreur à Antibes ?</h2>
+            <p class="cta-text">
+              Ramonage, conduit encrassé, fuite, tuiles déplacées ou projet de rénovation : contactez ETS Vasseur
+              pour un diagnostic et un devis détaillé.
+            </p>
+
+            <div class="hero-cta-row">
+              <button class="btn btn-primary" onclick="window.location.href='tel:0751302629'">Appeler maintenant</button>
+              <span class="cta-phone">07 51 30 26 29</span>
+            </div>
+
+            <p style="margin:10px 0 0; font-size:12px; color:#e9edf2;">
+              Adresse : 10 Av. Principal Pastour, 06600 Antibes
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat"><strong>Propre</strong>Protection des lieux et nettoyage.</div>
+            <div class="stat"><strong>Rapide</strong>Rendez-vous fixé sans traîner.</div>
+            <div class="stat"><strong>Clair</strong>Devis détaillé avant intervention.</div>
+            <div class="stat"><strong>Durable</strong>Priorité à la sécurité et l’étanchéité.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-alt">
+      <div class="container">
+        <div class="faq-grid">
+          <div>
+            <div class="section-eyebrow">FAQ</div>
+            <h2 class="section-title">Questions fréquentes</h2>
+            <p class="section-intro">Réponses aux questions courantes sur nos interventions à Antibes et dans le 06.</p>
+          </div>
+
+          <div>
+            <details>
+              <summary>Intervenez-vous uniquement à Antibes ?</summary>
+              <p>Notre zone principale couvre Antibes et les communes proches, plus largement le 06 selon les chantiers.</p>
+            </details>
+
+            <details>
+              <summary>Le devis est-il gratuit ?</summary>
+              <p>Oui, nous proposons un devis gratuit et détaillé après diagnostic sur place.</p>
+            </details>
+
+            <details>
+              <summary>Réalisez-vous le ramonage pour poêle, insert et cheminée ?</summary>
+              <p>Oui, nous intervenons sur les conduits selon votre installation (cheminée, insert, poêle).</p>
+            </details>
+
+            <details>
+              <summary>Faites-vous aussi la couverture et la zinguerie ?</summary>
+              <p>Oui, nous réalisons la réparation et rénovation de toiture ainsi que la zinguerie (gouttières, solins, abergements).</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="nav-logo-mark">
+              <img
+                src="https://lh3.googleusercontent.com/a-/ALV-UjVT7sgGS-kMOnfkcm0t6CIoIvSwEjNiIxbs3RrBPTGnEZyBjyM=s265-w265-h265"
+                alt="ETS Vasseur - Ramonage et Couverture"
+                loading="lazy"
+              />
+            </div>
+            <span>ETS Vasseur</span>
+          </div>
+          <p>
+            ETS Vasseur, ramoneur & couvreur à Antibes (06) : ramonage, débistrage, entretien de conduits,
+            réparation et rénovation de toiture, zinguerie et gouttières.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-title">Liens utiles</div>
+          <div class="footer-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#apropos">À propos</a>
+            <a href="#services">Services</a>
+            <a href="#projets">Réalisations</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-title">Contact</div>
+          <div class="footer-contact">
+            <div>Téléphone : <a href="tel:0751302629">07 51 30 26 29</a></div>
+            <div>Adresse : 10 Av. Principal Pastour, 06600 Antibes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2025 ETS Vasseur – Tous droits réservés.</div>
     </div>
-    <div>
-      07 51 30 26 29<br>
-      Antibes
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2025 ETS Vasseur – Tous droits réservés
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
